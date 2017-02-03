@@ -31,8 +31,8 @@ class TestBasket < Minitest::Test
     assert_equal(0, @basket.count_items())
   end
 
-  # def test_cost_of_empty_basket_is_zero
-  #   assert_equal(0, @basket.total_cost())
-  # end
+  def test_cost_of_empty_basket_is_zero
+    assert_equal(0, @basket.total_cost())
+  end
 
 end

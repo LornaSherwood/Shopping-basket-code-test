@@ -4,6 +4,7 @@ class Basket
 
   def initialize()
     @contents = []
+    @total_cost = 0
 
   end
 
@@ -23,9 +24,17 @@ class Basket
     @contents = []
   end
 
-  # def total_cost
-    
-  # end
+  def total_cost
+    if contents.length != 0
+      for item in contents
+        total_cost += item.cost()
+      end
+      return total_cost
+    else
+      return @total_cost
+    end
+
+  end
 
 
 
