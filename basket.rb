@@ -25,15 +25,10 @@ class Basket
   end
 
   def total_cost
-    if contents.length != 0
-      for item in contents
-        total_cost += item.cost()
-      end
-      return total_cost
-    else
-      return @total_cost
+    for item in contents
+      @total_cost += item.cost()
     end
-
+    return @total_cost
   end
 
 
