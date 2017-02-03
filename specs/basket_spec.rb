@@ -35,4 +35,11 @@ class TestBasket < Minitest::Test
     assert_equal(0, @basket.total_cost())
   end
 
+  def test_adding_item_increases_total_cost
+    @basket.add_item(@item)
+    assert_equal(69.99, @basket.total_cost())
+  end
+
+  
+
 end
