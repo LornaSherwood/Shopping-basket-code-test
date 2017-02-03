@@ -25,4 +25,10 @@ class TestBasket < Minitest::Test
     assert_equal(0, @basket.count_items())
   end
 
+  def test_can_empty_basket
+    @basket.add_item(@item)
+    @basket.empty
+    assert_equal(0, @basket.count_items())
+  end
+
 end

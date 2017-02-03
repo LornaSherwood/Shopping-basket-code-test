@@ -19,6 +19,10 @@ class Basket
     contents.delete(item)
   end
 
+  def empty
+    @contents = []
+  end
+
 
 
 
