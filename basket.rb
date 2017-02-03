@@ -23,6 +23,10 @@ class Basket
     @contents = []
   end
 
+  # def total_cost
+    
+  # end
+
 
 
 
