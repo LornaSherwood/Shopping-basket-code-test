@@ -15,6 +15,10 @@ class Basket
     contents << item
   end
 
+  def remove_item(item)
+    contents.delete(item)
+  end
+
 
 
 

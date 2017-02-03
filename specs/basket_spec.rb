@@ -19,4 +19,10 @@ class TestBasket < Minitest::Test
     assert_equal(1, @basket.count_items())
   end
 
+  def test_can_remove_item_from_basket
+    @basket.add_item(@item)
+    @basket.remove_item(@item)
+    assert_equal(0, @basket.count_items())
+  end
+
 end
