@@ -8,6 +8,7 @@ class TestBasket < Minitest::Test
   def setup
     @basket = Basket.new()
     @item = Item.new("Trainers", 69.99)
+    @item2 = Item.new("Shorts", 34.99)
   end
 
   def test_basket_starts_empty
@@ -40,11 +41,25 @@ class TestBasket < Minitest::Test
     assert_equal(69.99, @basket.total_cost())
   end
 
+  def test_adding_multiple_items_total_cost
+    @basket.add_item(@item)
+    @basket.add_item(@item2)
+    assert_equal(104.98, @basket.total_cost())
+  end
+
   def test_removing_item_returns_total_cost_to_zero
     @basket.add_item(@item)
     @basket.total_cost()
     @basket.remove_item(@item)
     assert_equal(0, @basket.total_cost())
+  end
+
+  def test_Bogof_reduces_cost
+    @basket.add_item(@item)
+    @basket.add_item(@item2)
+    apply_discount = @basket.bogof_total_cost
+    assert_equal(34.99, apply_discount)
+
   end
 
 end

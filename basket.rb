@@ -28,11 +28,19 @@ class Basket
     for item in contents
       total_cost += item.cost()
     end
-    return total_cost
+    return total_cost.round(2)
   end
 
-
-
+  def bogof_total_cost
+    total_cost = 0
+    for item in contents
+      position = contents.index(item)
+        if position.odd? 
+          total_cost += item.cost()
+        end
+    end
+    return total_cost.round(2)
+  end
 
 
 end
