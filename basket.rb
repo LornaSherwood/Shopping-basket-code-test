@@ -35,7 +35,7 @@ class Basket
     total_cost = 0
     for item in contents
       position = contents.index(item)
-        if position.odd? 
+        if position.even?
           total_cost += item.cost()
         end
     end
