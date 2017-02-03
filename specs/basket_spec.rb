@@ -40,6 +40,11 @@ class TestBasket < Minitest::Test
     assert_equal(69.99, @basket.total_cost())
   end
 
-  
+  def test_removing_item_returns_total_cost_to_zero
+    @basket.add_item(@item)
+    @basket.total_cost()
+    @basket.remove_item(@item)
+    assert_equal(0, @basket.total_cost())
+  end
 
 end
