@@ -42,5 +42,15 @@ class Basket
     return total_cost.round(2)
   end
 
+  def percent_discount(percent) # input percent so that more flexible in future
+    if bogof_total_cost > 20.00
+      discount_cost = bogof_total_cost() * (1 - (percent/100.0))
+      return  discount_cost.round(2)
+    else
+      return bogof_total_cost
+    end
+  end
+
+
 
 end

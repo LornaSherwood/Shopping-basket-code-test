@@ -9,7 +9,7 @@ class TestBasket < Minitest::Test
     @basket = Basket.new()
     @item = Item.new("Trainers", 69.99)
     @item2 = Item.new("Shorts", 34.99)
-    @item3 = Item.new("T-shirt", 24.99)
+    @item3 = Item.new("T-shirt", 12.99)
   end
 
   def test_basket_starts_empty
@@ -67,7 +67,29 @@ class TestBasket < Minitest::Test
     @basket.add_item(@item2)
     @basket.add_item(@item3)
     apply_discount = @basket.bogof_total_cost
-    assert_equal(94.98, apply_discount)
+    assert_equal(82.98, apply_discount)
   end
+
+  def test_percent_deduction_reduces_cost
+    @basket.add_item(@item)
+    @basket.add_item(@item2)
+    apply_discount = @basket.percent_discount(10)
+    assert_equal(62.99, apply_discount)
+  end
+
+  def test_percent_deduction_applies_above_value
+    @basket.add_item(@item)
+    @basket.add_item(@item2)
+    apply_discount = @basket.percent_discount(10)
+    assert_equal(62.99, apply_discount)
+  end
+
+  def test_percent_deduction_not_applied_below_value
+    @basket.add_item(@item3)
+    apply_discount = @basket.percent_discount(10)
+    assert_equal(12.99, apply_discount)
+
+  end
+
 
 end
