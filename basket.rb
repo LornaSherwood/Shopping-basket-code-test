@@ -1,10 +1,10 @@
 class Basket
 
-  attr_reader :contents
+  attr_reader :contents, :customer
 
-  def initialize()
+  def initialize(customer)
     @contents = []
-
+    @customer = customer
   end
 
   def count_items
@@ -52,8 +52,13 @@ class Basket
   end
 
   def loyalty_discount(percent)
-    total = percent_discount(10, 20.0) * (1 - (percent/100.0))
-    return total.round(2)
+    total_before_loyalty = percent_discount(10, 20.0)
+    if customer.loyalty == true
+      total = total_before_loyalty * (1 - (percent/100.0))
+      return total.round(2)
+    else
+      return total_before_loyalty
+    end
   end
 
 

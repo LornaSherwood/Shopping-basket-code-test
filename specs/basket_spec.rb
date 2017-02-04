@@ -3,10 +3,14 @@ require 'minitest/rg'
 
 require_relative '../basket.rb'
 require_relative '../item.rb'
+require_relative '../customer.rb'
 
 class TestBasket < Minitest::Test
   def setup
-    @basket = Basket.new()
+    @customer = Customer.new("Mo", true)
+    @customer2 = Customer.new("Jessica", false)
+    @basket = Basket.new(@customer)
+    @basket2 = Basket.new(@customer2)
     @item = Item.new("Trainers", 69.99)
     @item2 = Item.new("Shorts", 34.99)
     @item3 = Item.new("T-shirt", 12.99)
@@ -90,16 +94,18 @@ class TestBasket < Minitest::Test
     assert_equal(12.99, apply_discount)
   end
 
-  def test_loyalty_discount_reduces_total
+  def test_loyalty_discount_reduces_total_with_card
     @basket.add_item(@item)
     @basket.add_item(@item2)
     apply_loyalty_discount = @basket.loyalty_discount(2)
     assert_equal(61.73, apply_loyalty_discount)
   end
 
-  # def test_loyalty_discount_applies_only_with_card
-
-  # end
-
+  def test_loyalty_discount_without_card
+    @basket2.add_item(@item)
+    @basket2.add_item(@item2)
+    apply_loyalty_discount = @basket2.loyalty_discount(2)
+    assert_equal(62.99, apply_loyalty_discount)
+  end
 
 end
