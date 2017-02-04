@@ -73,23 +73,33 @@ class TestBasket < Minitest::Test
   def test_percent_deduction_reduces_cost
     @basket.add_item(@item)
     @basket.add_item(@item2)
-    apply_discount = @basket.percent_discount(10)
+    apply_discount = @basket.percent_discount(10, 20.0)
     assert_equal(62.99, apply_discount)
   end
 
   def test_percent_deduction_applies_above_value
     @basket.add_item(@item)
     @basket.add_item(@item2)
-    apply_discount = @basket.percent_discount(10)
+    apply_discount = @basket.percent_discount(10, 20.0)
     assert_equal(62.99, apply_discount)
   end
 
   def test_percent_deduction_not_applied_below_value
     @basket.add_item(@item3)
-    apply_discount = @basket.percent_discount(10)
+    apply_discount = @basket.percent_discount(10, 20.0)
     assert_equal(12.99, apply_discount)
-
   end
+
+  def test_loyalty_discount_reduces_total
+    @basket.add_item(@item)
+    @basket.add_item(@item2)
+    apply_loyalty_discount = @basket.loyalty_discount(2)
+    assert_equal(61.73, apply_loyalty_discount)
+  end
+
+  # def test_loyalty_discount_applies_only_with_card
+
+  # end
 
 
 end
