@@ -7,6 +7,10 @@ class Till
     @customer = customer
   end
 
+  def get_basket_total(basket)
+    return basket.total_cost
+  end
+
 
 
 
