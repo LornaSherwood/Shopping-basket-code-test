@@ -1,14 +1,17 @@
 class Till
 
-
-
-  def initialize (basket, customer)
+  def initialize (basket)
     @basket = basket
-    @customer = customer
+    @discount = Discount.new(@basket)
   end
 
-  def get_basket_total(basket)
-    return basket.total_cost
+  def get_basket_total
+    return @basket.total_cost()
+  end
+
+  def apply_bogof_discount
+    cost_discount_deducted = get_basket_total() - @discount.bogof_total_reduction
+    return cost_discount_deducted.round(2)
   end
 
 
