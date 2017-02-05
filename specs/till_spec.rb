@@ -10,18 +10,26 @@ class TestTill < Minitest::Test
 
   def setup
     @customer1 = Customer.new("Mo", true)
+    @customer2 = Customer.new("Jessica", false)
     @basket = Basket.new(@customer1)
-    @basket2 = Basket.new(@customer1)
+    @basket2 = Basket.new(@customer2)
     @item = Item.new("Trainers", 69.99)
     @item2 = Item.new("Shorts", 34.99)
     @item3 = Item.new("T-shirt", 12.99)
     @till = Till.new(@basket)
+    @till2 = Till.new(@basket2)
   end
 
   def setup_basket
     @basket.add_item(@item)
     @basket.add_item(@item2)
     @basket.add_item(@item3)
+  end
+
+  def setup_basket_no_loyalty
+    @basket2.add_item(@item)
+    @basket2.add_item(@item2)
+    @basket2.add_item(@item3)
   end
 
   def test_can_get_basket_total
@@ -48,7 +56,9 @@ class TestTill < Minitest::Test
   end
 
   def test_loyalty_deduction_not_applied_if_no_card
-
+    setup_basket_no_loyalty()
+    new_cost = @till2.apply_loyalty_discount()
+    assert_equal(117.97, new_cost)
   end
 
 
