@@ -1,6 +1,6 @@
 class Customer
 
-  attr_reader :loyalty
+  attr_reader :name, :loyalty
 
   def initialize(name, loyalty)
     @name = name

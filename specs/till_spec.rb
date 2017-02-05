@@ -22,6 +22,7 @@ class TestTill < Minitest::Test
 
   def setup_basket
     @basket.add_item(@item)
+    @basket.add_item(@item)
     @basket.add_item(@item2)
     @basket.add_item(@item3)
   end
@@ -34,34 +35,37 @@ class TestTill < Minitest::Test
 
   def test_can_get_basket_total
     setup_basket()
-    assert_equal(117.97, @till.get_basket_total)
+    assert_equal(187.96, @till.get_basket_total)
   end
 
   def test_can_apply_bogof_discount
     setup_basket()
-    new_cost = @till.apply_bogof_discount()
-    assert_equal(82.98, new_cost)
+    new_cost = @till.apply_bogof_discount(@till.get_basket_total)
+    assert_equal(117.97, new_cost)
   end
 
   def test_can_apply_percent_discount
     setup_basket
-    new_cost = @till.apply_percent_discount()
-    assert_equal(106.17, new_cost)
+    new_cost = @till.apply_percent_discount(@till.get_basket_total)
+    assert_equal(169.16, new_cost)
   end
 
   def test_can_apply_loyalty_discount
     setup_basket()
-    new_cost = @till.apply_loyalty_discount()
-    assert_equal(115.61, new_cost)
+    new_cost = @till.apply_loyalty_discount(@till.get_basket_total)
+    assert_equal(184.20, new_cost)
   end
 
   def test_loyalty_deduction_not_applied_if_no_card
     setup_basket_no_loyalty()
-    new_cost = @till2.apply_loyalty_discount()
+    new_cost = @till2.apply_loyalty_discount(@till2.get_basket_total)
     assert_equal(117.97, new_cost)
   end
 
-
-
+  def test_can_apply_all_discounts_in_order
+    setup_basket()
+    new_cost = @till.apply_all_discounts(@till.get_basket_total)
+    assert_equal(104.05, new_cost)
+  end
 
 end
