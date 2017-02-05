@@ -8,7 +8,7 @@ class Customer
   end
 
   def set_loyalty(boolean)
-    return boolean
+    @loyalty = boolean
   end
 
 end

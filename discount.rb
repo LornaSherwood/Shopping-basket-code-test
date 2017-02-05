@@ -26,6 +26,11 @@ class Discount
     end
   end
 
+  def loyalty_discount_reduction(current_cost, percent)
+      new_cost = current_cost * (percent/100.0)
+      return new_cost
+  end
+
 
 
 

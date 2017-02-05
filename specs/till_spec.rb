@@ -41,6 +41,16 @@ class TestTill < Minitest::Test
     assert_equal(106.17, new_cost)
   end
 
+  def test_can_apply_loyalty_discount
+    setup_basket()
+    new_cost = @till.apply_loyalty_discount()
+    assert_equal(115.61, new_cost)
+  end
+
+  def test_loyalty_deduction_not_applied_if_no_card
+
+  end
+
 
 
 

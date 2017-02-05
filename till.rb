@@ -3,6 +3,7 @@ class Till
   def initialize (basket)
     @basket = basket
     @discount = Discount.new(@basket)
+    @customer = @basket.customer()
   end
 
   def get_basket_total
@@ -18,16 +19,16 @@ class Till
     cost_discount_deducted = get_basket_total() - @discount.percent_discount_reduction(get_basket_total(), 10, 20.0)
     return cost_discount_deducted.round(2)
   end
- 
 
-
-
-
-  
+  def apply_loyalty_discount
+    if @customer.loyalty == true
+    cost_discount_deducted = get_basket_total() - @discount.loyalty_discount_reduction(get_basket_total(), 2)
+      return cost_discount_deducted.round(2)
+    else
+      return get_basket_total
+    end
+  end  
 
 end
 
-# get basket total cost
-# apply bogof
-# apply percent discount
-# apply loyalty discount
+

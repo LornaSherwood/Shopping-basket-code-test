@@ -48,4 +48,13 @@ class TestDiscount < Minitest::Test
     assert_equal(0.00, amount_reduced)
   end 
 
+  def test_loyalty_deduction_calculates_correctly
+    @basket.add_item(@item)
+    amount_reduced = @discount.loyalty_discount_reduction(69.99, 2)
+    assert_equal(1.39, )
+
+  end
+
+
+
 end
