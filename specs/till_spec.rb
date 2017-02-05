@@ -31,8 +31,14 @@ class TestTill < Minitest::Test
 
   def test_can_apply_bogof_discount
     setup_basket()
-    new_cost = @till.apply_bogof_discount
+    new_cost = @till.apply_bogof_discount()
     assert_equal(82.98, new_cost)
+  end
+
+  def test_can_apply_percent_discount
+    setup_basket
+    new_cost = @till.apply_percent_discount()
+    assert_equal(106.17, new_cost)
   end
 
 
