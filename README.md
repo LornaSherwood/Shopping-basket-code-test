@@ -19,7 +19,7 @@ This is a weekend homework for CodeClan following this specification (with the e
 	What we will be looking for:
 	Evidence of using a statically typed programming language and solid coding techniques with evidence of test driven 	development.
 	
-The project has the following classes, with separate files showing tests:
+The project has been written in Ruby with the following classes. Separate files showing tests:
 
 	Item				- name and value for each item to go into basket
 	Customer		- name and whether they hold a loyalty card
