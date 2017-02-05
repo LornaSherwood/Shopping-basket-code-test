@@ -59,53 +59,55 @@ class TestBasket < Minitest::Test
     assert_equal(0, @basket.total_cost())
   end
 
-  def test_Bogof_reduces_cost
-    @basket.add_item(@item)
-    @basket.add_item(@item2)
-    apply_discount = @basket.bogof_total_cost
-    assert_equal(69.99, apply_discount)
-  end
+  #start of reductions - move to own class
 
-  def test_Bogof_correct_3_items
-    @basket.add_item(@item)
-    @basket.add_item(@item2)
-    @basket.add_item(@item3)
-    apply_discount = @basket.bogof_total_cost
-    assert_equal(82.98, apply_discount)
-  end
+  # def test_Bogof_reduces_cost
+  #   @basket.add_item(@item)
+  #   @basket.add_item(@item2)
+  #   apply_discount = @basket.bogof_total_cost
+  #   assert_equal(69.99, apply_discount)
+  # end
 
-  def test_percent_deduction_reduces_cost
-    @basket.add_item(@item)
-    @basket.add_item(@item2)
-    apply_discount = @basket.percent_discount(10, 20.0)
-    assert_equal(62.99, apply_discount)
-  end
+  # def test_Bogof_correct_3_items
+  #   @basket.add_item(@item)
+  #   @basket.add_item(@item2)
+  #   @basket.add_item(@item3)
+  #   apply_discount = @basket.bogof_total_cost
+  #   assert_equal(82.98, apply_discount)
+  # end
 
-  def test_percent_deduction_applies_above_value
-    @basket.add_item(@item)
-    @basket.add_item(@item2)
-    apply_discount = @basket.percent_discount(10, 20.0)
-    assert_equal(62.99, apply_discount)
-  end
+  # def test_percent_deduction_reduces_cost
+  #   @basket.add_item(@item)
+  #   @basket.add_item(@item2)
+  #   apply_discount = @basket.percent_discount(10, 20.0)
+  #   assert_equal(62.99, apply_discount)
+  # end
 
-  def test_percent_deduction_not_applied_below_value
-    @basket.add_item(@item3)
-    apply_discount = @basket.percent_discount(10, 20.0)
-    assert_equal(12.99, apply_discount)
-  end
+  # def test_percent_deduction_applies_above_value
+  #   @basket.add_item(@item)
+  #   @basket.add_item(@item2)
+  #   apply_discount = @basket.percent_discount(10, 20.0)
+  #   assert_equal(62.99, apply_discount)
+  # end
 
-  def test_loyalty_discount_reduces_total_with_card
-    @basket.add_item(@item)
-    @basket.add_item(@item2)
-    apply_loyalty_discount = @basket.loyalty_discount(2)
-    assert_equal(61.73, apply_loyalty_discount)
-  end
+  # def test_percent_deduction_not_applied_below_value
+  #   @basket.add_item(@item3)
+  #   apply_discount = @basket.percent_discount(10, 20.0)
+  #   assert_equal(12.99, apply_discount)
+  # end
 
-  def test_loyalty_discount_without_card
-    @basket2.add_item(@item)
-    @basket2.add_item(@item2)
-    apply_loyalty_discount = @basket2.loyalty_discount(2)
-    assert_equal(62.99, apply_loyalty_discount)
-  end
+  # def test_loyalty_discount_reduces_total_with_card
+  #   @basket.add_item(@item)
+  #   @basket.add_item(@item2)
+  #   apply_loyalty_discount = @basket.loyalty_discount(2)
+  #   assert_equal(61.73, apply_loyalty_discount)
+  # end
+
+  # def test_loyalty_discount_without_card
+  #   @basket2.add_item(@item)
+  #   @basket2.add_item(@item2)
+  #   apply_loyalty_discount = @basket2.loyalty_discount(2)
+  #   assert_equal(62.99, apply_loyalty_discount)
+  # end
 
 end
